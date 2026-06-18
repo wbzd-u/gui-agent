@@ -514,7 +514,6 @@ def tab_analyze_memory() -> None:
 def main() -> None:
     st.set_page_config(
         page_title="GUI Agent 测试闭环 Copilot",
-        page_icon="🔄",
         layout="wide",
     )
     _init_session_state()

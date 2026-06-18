@@ -1,6 +1,6 @@
 # GUI Agent Test Loop MVP
 
-一个用于展示 **GUI Agent 测试闭环系统** 的最小可运行 Demo。本 Demo 不控制真实浏览器或手机 App，而是通过 Mock Executor 模拟 Agent 执行，完整呈现从 PRD 到测试点、从自然语言用例到 Agent Case、从调度执行到失败归因与资产记忆沉淀的闭环流程。
+一个用于展示 **GUI Agent 测试闭环系统** 的最小可运行 Demo，**对应四道考题的可运行示例**。本 Demo 不控制真实浏览器或手机 App，而是通过 Mock Executor 模拟 Agent 执行，完整呈现从 PRD 到测试点、从自然语言用例到 Agent Case、从调度执行到失败归因与资产记忆沉淀的闭环流程。
 
 ---
 
@@ -9,6 +9,15 @@
 GUI Agent（基于视觉/语义理解的自动化测试 Agent）正在改变传统 UI 自动化测试的形态。与传统 Selenium/Playwright 脚本不同，Agent 以「目标驱动 + 逐步决策」方式操作界面，测试体系也需要相应升级：不仅要记录 pass/fail，还要理解 **为什么失败、如何修复、如何避免重复踩坑**。
 
 本 MVP 是一个 **Streamlit 交互式 Demo**，帮助团队快速理解 GUI Agent 测试闭环的核心概念与数据结构。
+
+## 与四道考题的对应关系
+
+| 考题 | Demo 对应模块 |
+|------|---------------|
+| 考题一：多场景调度引擎 | scheduler.py + Tab 3 调度与 Mock 执行 |
+| 考题二：自然语言手工用例转换 | case_converter.py + Tab 2 Agent Case |
+| 考题三：BUG 回归端到端方案 | bug_regression.py + 历史 Bug 生成 REG-* case + 优先调度 |
+| 考题四：PRD 召回知识库生成测试点 | prd_to_testpoint.py + mock_knowledge.json + Tab 1 测试点生成 |
 
 ---
 
@@ -168,36 +177,36 @@ python -m streamlit run app.py
 
 ---
 
-## Demo 讲解顺序（约 5 分钟）
+## 建议演示路径
 
-### Step 1 — Tab 1：PRD → 测试点（1 min）
+### Step 0 — 概览
 
-1. 展示默认 PRD（登录/搜索/购物车/下单/支付）
-2. 点击 **「生成测试点」**
-3. 指出每个测试点的 `oracle`、`priority`、`risk_tags` 如何支撑后续调度
+1. 打开 **概览** Tab，说明项目定位：GUI Agent 测试闭环 Copilot，而非普通用例生成器
+2. 指出顶部 KPI 与闭环流程图，建立整体认知
 
-### Step 2 — Tab 2：自然语言 → Agent Case（1 min）
+### Step 1 — PRD 解析
+
+1. 展示默认 PRD（登录 / 搜索 / 购物车 / 下单 / 支付）
+2. 点击 **「生成测试点」**，展示功能模块摘要卡片
+3. 说明 `oracle`、`priority`、`risk_tags` 如何支撑后续调度
+
+### Step 2 — Agent Case
 
 1. 使用默认用例：「用户登录后搜索商品并加入购物车」
-2. 点击 **「转换为 Agent Case」**
-3. 展开步骤，讲解 **StepDecision**：intent、target、warnings、decision
-4. 提及 asset_memory 中的 flaky_steps 如何影响 warnings
+2. 点击 **「转换为 Agent Case」**，展开 StepDecision：intent、target、warnings、decision
+3. 说明 asset_memory 中的 flaky_steps 如何影响 warnings
 
-### Step 3 — Tab 3：调度与 Mock 执行（1.5 min）
+### Step 3 — 执行轨迹
 
-1. 点击 **「生成执行计划」** — 展示 priority + 回归 case 排序
-2. 点击 **「Mock 执行」** — 展示 4 种确定性结果：
-   - ✅ pass（登录搜索）
-   - ❌ fail / product_bug（搜索空态）
-   - ❌ fail / locator_issue（加购按钮）
-   - ❓ unknown / oracle_ambiguous（支付结果）
-3. 展开 action_decisions，对比 StepDecision 与 ActionDecision
+1. 点击 **「Mock 执行」**（会自动生成执行计划）
+2. 展示 pass / fail / unknown 三种结果及 ActionDecision 轨迹
+3. 对比 StepDecision（计划）与 ActionDecision（执行）的差异
 
-### Step 4 — Tab 4：分析与资产记忆（1.5 min）
+### Step 4 — 失败归因与资产记忆
 
-1. 点击 **「分析执行结果」** — 展示 taxonomy 归因与 repair_suggestion
-2. 点击 **「写入资产记忆」** — 展示 asset_memory.json 更新
-3. 回到 Tab 2 重新转换 Case，说明 warnings 如何变化 — **闭环完成**
+1. 点击 **「分析执行结果」**，展示 failure taxonomy、root cause、repair suggestion
+2. 点击 **「写入资产记忆」**，说明 KPI「资产记忆条目」变化
+3. 回到 **Agent Case** Tab 重新转换用例，展示 warnings 变化 — **闭环完成**
 
 ---
 

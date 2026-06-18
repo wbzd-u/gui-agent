@@ -7,33 +7,9 @@
       "step": "add_to_cart",
       "locator": "//button[contains(text(),'加入购物车')]",
       "note": "历史偶现不可点击，建议使用 #add-to-cart-btn"
-    },
-    {
-      "case_id": "REG-BUG-002",
-      "step": "定位器不稳定或元素状态与预期不符",
-      "locator": "element not clickable: 按钮 visible 但 click 无响应",
-      "note": "切换 stable locator（如 #add-to-cart-btn）；将 flaky 步骤写入 asset_memory。根因：定位器不稳定或元素状态与预期不符",
-      "updated_at": "2026-06-18T04:59:58Z"
     }
   ],
-  "known_product_bugs": [
-    {
-      "bug_id": "BUG-AUTO-REG-BUG-001",
-      "case_id": "REG-BUG-001",
-      "title": "产品行为不符合需求：业务断言失败",
-      "symptoms": "element not found: 空态文案未展示，页面空白",
-      "repair_suggestion": "提交 Bug 至产品团队；增加回归用例并更新 known_product_bugs。根因：产品行为不符合需求：业务断言失败",
-      "updated_at": "2026-06-18T04:59:58Z"
-    }
-  ],
-  "ambiguous_oracles": [
-    {
-      "case_id": "REG-BUG-003",
-      "oracle": "同时出现「支付成功」与「支付失败，请重试」矛盾文案",
-      "reason": "支付结果 Oracle 定义不唯一，成功/失败文案冲突",
-      "refinement": "与产品/QA 澄清 oracle，改写为可机器判定的单一断言。根因：支付结果 Oracle 定义不唯一，成功/失败文案冲突",
-      "updated_at": "2026-06-18T04:59:58Z"
-    }
-  ],
+  "known_product_bugs": [],
+  "ambiguous_oracles": [],
   "repaired_cases": []
 }
