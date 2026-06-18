@@ -1,0 +1,26 @@
+[
+  {
+    "bug_id": "BUG-001",
+    "title": "搜索结果为空但未提示",
+    "feature": "search",
+    "symptoms": "搜索关键词无匹配商品时页面空白，未展示空态文案",
+    "risk_level": "high",
+    "regression_hint": "搜索不存在商品名，验证空态提示是否出现"
+  },
+  {
+    "bug_id": "BUG-002",
+    "title": "加入购物车按钮偶现不可点击",
+    "feature": "cart",
+    "symptoms": "商品详情页加购按钮 enabled 但 click 无响应，需刷新页面",
+    "risk_level": "medium",
+    "regression_hint": "登录后搜索商品并点击加购，验证按钮可点击且购物车数量+1"
+  },
+  {
+    "bug_id": "BUG-003",
+    "title": "支付失败提示不明确",
+    "feature": "payment",
+    "symptoms": "支付失败后同时出现成功/失败文案，用户无法判断最终状态",
+    "risk_level": "critical",
+    "regression_hint": "使用测试卡触发支付失败，验证仅展示单一明确结果"
+  }
+]

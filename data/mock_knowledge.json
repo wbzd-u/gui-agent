@@ -1,0 +1,88 @@
+{
+  "pages": {
+    "login": {
+      "url": "/login",
+      "title": "用户登录"
+    },
+    "search": {
+      "url": "/search",
+      "title": "商品搜索"
+    },
+    "cart": {
+      "url": "/cart",
+      "title": "购物车"
+    },
+    "checkout": {
+      "url": "/checkout",
+      "title": "确认订单"
+    },
+    "payment": {
+      "url": "/payment",
+      "title": "支付"
+    }
+  },
+  "locators": {
+    "login_username": {
+      "stable": "#username-input",
+      "flaky": "//input[@placeholder='用户名']"
+    },
+    "login_password": {
+      "stable": "#password-input",
+      "flaky": "//input[@type='password']"
+    },
+    "login_button": {
+      "stable": "#login-btn",
+      "flaky": "//button[contains(text(),'登录')]"
+    },
+    "search_input": {
+      "stable": "#search-input",
+      "flaky": "//input[@name='q']"
+    },
+    "search_button": {
+      "stable": "#search-btn",
+      "flaky": "//button[contains(text(),'搜索')]"
+    },
+    "search_result_item": {
+      "stable": ".search-result-item",
+      "flaky": "//div[@class='result']"
+    },
+    "add_to_cart_button": {
+      "stable": "#add-to-cart-btn",
+      "flaky": "//button[contains(text(),'加入购物车')]"
+    },
+    "cart_badge": {
+      "stable": "#cart-count",
+      "flaky": "//span[@class='cart-badge']"
+    },
+    "checkout_button": {
+      "stable": "#checkout-btn",
+      "flaky": "//button[contains(text(),'去结算')]"
+    },
+    "pay_button": {
+      "stable": "#pay-btn",
+      "flaky": "//button[contains(text(),'立即支付')]"
+    },
+    "payment_result": {
+      "stable": "#payment-result",
+      "flaky": "//div[@class='pay-status']"
+    }
+  },
+  "business_rules": {
+    "login_required": "未登录用户访问购物车/结算/支付需跳转登录页",
+    "search_empty_state": "搜索无结果时应展示空态提示文案",
+    "cart_stock": "库存不足时加购按钮应置灰并提示",
+    "payment_timeout": "支付超时 30 秒后应展示明确失败原因"
+  },
+  "test_accounts": {
+    "demo_user": {
+      "username": "demo@test.com",
+      "password": "Demo@123",
+      "role": "普通用户"
+    },
+    "vip_user": {
+      "username": "vip@test.com",
+      "password": "Vip@123",
+      "role": "VIP 用户"
+    }
+  }
+}
